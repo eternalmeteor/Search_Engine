@@ -3,6 +3,7 @@
 Configuration::Configuration(const std::string &configFilePath)
 {
     // test
+    // test2
     std::ifstream ifs(configFilePath);
     std::string first, second;
     if(!ifs)
