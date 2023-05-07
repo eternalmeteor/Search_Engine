@@ -1,6 +1,6 @@
 #ifndef _CONFIGURATION_H_
 #define _CONFIGURATION_H_
-#include "../myhead.h"
+#include "/home/ubuntu1804/Search_Engine/include/myhead.h"
 
 //auto &config = *Configuration::getInstance()
 //config["server_ip"] = 127.0.0.1
@@ -17,7 +17,7 @@ class Configuration
 
 public:
     static Configuration *getInstance();
-    std::map<std::string, std::string> &getConfigMap();
+    std::map<std::string, std::string> &getConfigMap(); // 获取存放配置文件内容的map
     unordered_set<string> &getStopWordList();//获取停用词集合内容
     static void init();
     static void destory();
@@ -30,7 +30,7 @@ private:
 
 private:
     static Configuration *_pConfig;
-    static pthread_once_t _once;
+    // static pthread_once_t _once;
     static std::string _configFilePath;
     std::map<std::string, std::string> _configs;
     unordered_set<string> _stopWordList;

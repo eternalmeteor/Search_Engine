@@ -1,6 +1,6 @@
 #ifndef _PAGELIB_H
 #define _PAGELIB_H
-
+#include "DirScanner.h"
 #include "../SearchEngineServer/Configuration.h"
 #include "../../lib/simhash/Simhasher.hpp"
 struct HammingDistance_3

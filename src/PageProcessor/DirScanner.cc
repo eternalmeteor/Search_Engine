@@ -1,4 +1,5 @@
 #include "../../include/PageProcessor/DirScanner.h"
+
 void DirScanner::operator()(const std::string &dir)
 {
     traverse(dir);
