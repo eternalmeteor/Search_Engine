@@ -1,6 +1,6 @@
 #include "../../include/PageProcessor/PageLib.h"
-#include "../../include/PagePreprocessor/DirScanner.h"
-#include "../../include/PagePreprocessor/tinyxml2.h"
+#include "../../include/PageProcessor/DirScanner.h"
+#include "../../include/PageProcessor/tinyxml2.h"
 
 using namespace tinyxml2;
 

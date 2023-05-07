@@ -1,4 +1,4 @@
-#include "/home/ubuntu1804/Search_Engine/include/DictProducer/DictProducer.h"
+#include "../../include/DictProducer/DictProducer.h"
 #include "/home/ubuntu1804/Search_Engine/include/DictProducer/SplitTool.h"
 #include "/home/ubuntu1804/Search_Engine/include/SearchEngineServer/Configuration.h"
 
