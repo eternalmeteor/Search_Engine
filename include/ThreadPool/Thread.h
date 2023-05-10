@@ -9,9 +9,12 @@ using std::bind;
 
 using ThreadCallback = function<void()>;
 
+extern __thread const char *name;
 class Thread
 {
 public:
+    // 这里为什么需要使用右值引用？
+    // 为了减少深拷贝，这里最终调用的是函数指针，使用右值引用可以提高程序效率，减少内存分配次数
     Thread(ThreadCallback &&cb, const string &name);
     ~Thread();
 
