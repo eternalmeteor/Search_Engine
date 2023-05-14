@@ -1,12 +1,6 @@
 #include "../../include/TcpServer/Acceptor.h"
 
 
-class Acceptor
-{
-private:
-    Socket _sock;
-    InetAddress _servAddr;
-public:
 Acceptor::Acceptor(const string &id, unsigned short port)
 : _sock()
 , _servAddr(id, port)

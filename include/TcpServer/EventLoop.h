@@ -13,7 +13,6 @@
 #include <memory>
 #include <vector>
 #include <functional>
-#include "../ThreadPool/MutexLock.h"
 
 using std::shared_ptr;
 using std::map;
@@ -34,8 +33,8 @@ private:
 
     // 回调函数
     TcpConnectionCallback _onConnection;
-    TcpConnectionCallback _onMe;
-    TcpConnectionCallback _onConnection;
+    TcpConnectionCallback _onMessage;
+    TcpConnectionCallback _onClose;
 
     vector<Functor> _pendingFunctors; // 需要延迟执行的回调函数
     MutexLock _mutex;

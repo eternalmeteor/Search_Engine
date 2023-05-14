@@ -15,7 +15,7 @@ Thread::Thread(ThreadCallback &&cb, const string &name)
 , _name(name) 
 {}
 
-Thread:: ~Thread() 
+Thread::~Thread() 
 {
     if(_isRunning)
     {

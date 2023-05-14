@@ -1,6 +1,7 @@
 #ifndef __TCP_SERVER_H
 #define __TCP_SERVER_H
-
+#include "Acceptor.h"
+#include "EventLoop.h"
 
 class TcpServer
 {
@@ -9,9 +10,9 @@ private:
     EventLoop _loop;
 public:
     TcpServer(const string & ip, unsigned short port);
-    void setAllCallbacks(TcpConnectionCallback &&,
+    void setAllCallback(TcpConnectionCallback &&,
                     TcpConnectionCallback &&,
-                    TcpConnectionCallback&&);
+                    TcpConnectionCallback &&);
     void start();
     void stop();
     EventLoop *getLoop();

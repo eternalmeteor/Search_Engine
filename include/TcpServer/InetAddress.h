@@ -42,7 +42,7 @@ public:
     string ip() const
     {
         //将32位网络字节序转换成点分十进制
-        return string(inet_nota(_addr.sin_addr));
+        return string(inet_ntoa(_addr.sin_addr));
     }
 
     unsigned short port() const
@@ -60,8 +60,6 @@ public:
 
 
 };
-
-
 
 
 #endif
