@@ -10,6 +10,7 @@ Dictionary::Dictionary()
     // std::cout<<"Dictionary::Dictionary()"<<std::endl;
     map<string, string> configs = Configuration::getInstance()->getConfigMap();
     init(configs["xmldict_path"], configs["index_path"]);
+    init(configs["engdict_path"], configs["en_index_path"]);
     // std::cout<<"Dictionary::Dictionary() finish"<<std::endl;
 }
 
@@ -33,11 +34,13 @@ void Dictionary::init(const string &dictpath, const string & indexpath)
     string line;
     string word;
     int num;
+    // std::cout<<dictpath<<std::endl;
     while(getline(ifile, line), !ifile.eof())
     {
         istringstream iss(line);
         iss >> word;
         iss >> num;
+        _dict.push_back(make_pair(word, num));
     }
     ifile.close();
     ifile.open(indexpath);

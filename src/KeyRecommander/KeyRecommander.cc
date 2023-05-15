@@ -26,6 +26,7 @@ void KeyRecommander::queryIndexTable()//从索引文件找出查询词的近似�
             line_no.insert(temp_line_no.begin(), temp_line_no.end());// 并将集合插入到集合line_no中
         }
     }
+    // std::cout<<line_no.size()<<std::endl;
     /*
         h: 1 200 300 400
         e: 1 200 400 500
@@ -43,6 +44,7 @@ void KeyRecommander::queryIndexTable()//从索引文件找出查询词的近似�
         }
         i++;
     }
+    // std::cout<<_similarWord.size()<<std::endl;
 }
 //将近似词进行计算（最小编辑距离，词频，候选词）结果放入优先队列
 void KeyRecommander::statistic()
