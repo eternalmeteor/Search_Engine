@@ -2,7 +2,7 @@
 
 
 Dictionary * Dictionary::_pdict = nullptr;
-// pthread_mutex_t Dictionary::_dmutex;
+pthread_mutex_t Dictionary::_dmutex;
 
 
 Dictionary::Dictionary()
@@ -19,12 +19,12 @@ Dictionary* Dictionary::createInstance()
     // std::cout<<"Dictionary* Dictionary::createInstance()"<<std::endl;
     if(nullptr == _pdict)
     {
-        // pthread_mutex_lock(&_dmutex);
+        pthread_mutex_lock(&_dmutex);
         if(nullptr == _pdict)
         {
             _pdict = new Dictionary();
         }
-        // pthread_mutex_unlock(&_dmutex);
+        pthread_mutex_unlock(&_dmutex);
     }
     return _pdict;
 }

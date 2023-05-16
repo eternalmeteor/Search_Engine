@@ -24,7 +24,7 @@ private:
     map<string, set<int>> _index; // 索引表
     static AutoRelease _ar;
     static Dictionary * _pdict;
-    // static pthread_mutex_t _dmutex;
+    static pthread_mutex_t _dmutex;
 public:
     static Dictionary *createInstance();
     void init(const string &dictpath, const string & indexpath);
