@@ -4,8 +4,6 @@
 #include "../../include/DictProducer/SplitTool.h"
 
 
-
-
 WebPageQuery::WebPageQuery()
 : _configs(*Configuration::getInstance())
 , _wordSegmentation(Cppjieba::getSplitTool())

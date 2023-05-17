@@ -3,7 +3,9 @@
 
 #include "../myhead.h"
 #include "WebPage.h"
+#include "../DictProducer/SplitTool.h"
 
+class SplitTool;
 
 class WebPageQuery
 {
@@ -11,7 +13,7 @@ private:
     unordered_map<int, pair<int, int>> _offsetlib;//偏移库
     unordered_map<string, map<int, double>> _invertIndexLib;//倒排索引库
     Configuration & _configs;
-    SplitTools * _wordSegmentation;
+    SplitTool * _wordSegmentation;
 public:
     WebPageQuery();
     ~WebPageQuery();
