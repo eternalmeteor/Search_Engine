@@ -72,28 +72,28 @@ void KeyRecommander::product_similar_finally()//产生优先级最高的三个�
 
 void KeyRecommander::printSimilar()
 {
-    std::cout<<_similar_finally.size()<<std::endl;
+    // std::cout<<_similar_finally.size()<<std::endl;
     for(auto x:_similar_finally)
     {   
         std::cout << x << std::endl;
     }
 }
 // 将优先级最高的三个近似词以json类型返回
-// json KeyRecommander::get_serialize()
-// {
-//     json j;
-//     if(CacheManager::getCachemanager()->getKeyWrodCache(atoi(name)).get(_queryWord, j))
-//     {
-//         return j;
-//     }
-//     else 
-//     {
-//         executeQuery();
-//         j = ProtocolParser::vector2json(_similar_finally);
-//         CacheManager::getCachemanager()->getKeyWordCache(atoi(name)).put(_queryWord, j);
-//         return j;
-//     }
-// }
+json KeyRecommander::get_serialize()
+{
+    json j;
+    // if(CacheManager::getCachemanager()->getKeyWrodCache(atoi(name)).get(_queryWord, j))
+    // {
+    //     return j;
+    // }
+    // else 
+    // {
+    executeQuery();
+    j = ProtocolParser::vector2json(_similar_finally);
+    // CacheManager::getCachemanager()->getKeyWordCache(atoi(name)).put(_queryWord, j);
+    return j;
+    // }
+}
 
 vector<string> KeyRecommander::read_utf8_onebyone(string input)
 {

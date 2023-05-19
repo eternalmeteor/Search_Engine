@@ -18,9 +18,9 @@ Configuration::Configuration(const std::string &configFilePath)
 
 Configuration *Configuration::getInstance()
 {
-    _pConfig = new Configuration(_configFilePath);
-    atexit(destory);
-    // pthread_once(&_once, init);
+    // _pConfig = new Configuration(_configFilePath);
+    // atexit(destory);
+    pthread_once(&_once, init);
     return _pConfig;
 }
 
@@ -84,5 +84,5 @@ void Configuration::stopWordListInit()
 }
                                                                                                                                                                                                  
 Configuration *Configuration::_pConfig = nullptr;
-// pthread_once_t Configuration::_once = PTHREAD_ONCE_INIT;
+pthread_once_t Configuration::_once = PTHREAD_ONCE_INIT;
 std::string Configuration::_configFilePath = "/home/ubuntu1804/Search_Engine/conf/server.conf";

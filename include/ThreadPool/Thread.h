@@ -9,7 +9,7 @@ using std::bind;
 
 using ThreadCallback = function<void()>;
 
-extern __thread const char *name;
+extern __thread const char * name;
 class Thread
 {
 public:

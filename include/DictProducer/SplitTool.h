@@ -24,6 +24,7 @@ private:
     map<string, string> &_configs;
     cppjieba::Jieba _jieba;
     static SplitTool *splittool;
+    static pthread_mutex_t _mutex;
 };
 
 

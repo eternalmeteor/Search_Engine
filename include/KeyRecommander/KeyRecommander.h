@@ -7,6 +7,7 @@
 #include "../TcpServer/TcpConnection.h"
 #include "Dictionary.h"
 #include "EditDistance.h"
+#include "../ProtocolParser.h"
 
 using json = nlohmann::json;
 
@@ -73,7 +74,7 @@ public:
     void queryIndexTable();//从索引文件找出查询词的近似词
     void statistic();//进行计算（最小编辑距离，词频，候选词）结果放入优先队列
     void product_similar_finally();//产生优先级最高的三个近似词
-    // json get_serialize();
+    json get_serialize();
 private:
     vector <string> read_utf8_onebyone(string input);
     void printSimilar();

@@ -1,6 +1,6 @@
 #ifndef _CONFIGURATION_H_
 #define _CONFIGURATION_H_
-#include "/home/ubuntu1804/Search_Engine/include/myhead.h"
+#include "../myhead.h"
 
 //auto &config = *Configuration::getInstance()
 //config["server_ip"] = 127.0.0.1
@@ -30,7 +30,7 @@ private:
 
 private:
     static Configuration *_pConfig;
-    // static pthread_once_t _once;
+    static pthread_once_t _once;
     static std::string _configFilePath;
     std::map<std::string, std::string> _configs;
     unordered_set<string> _stopWordList;
