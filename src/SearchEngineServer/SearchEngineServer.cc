@@ -1,5 +1,5 @@
 #include "../../include/SearchEngineServer/SearchEngineServer.h"
-
+#include "../../include/Cache/CacheManager.h"
 
 SearchEngineServer::SearchEngineServer(map<string, string> & config)
 : _threadpool(atoi((config["threads_num"]).c_str()), atoi((config["server_port"]).c_str()))
@@ -8,7 +8,7 @@ SearchEngineServer::SearchEngineServer(map<string, string> & config)
 
 void SearchEngineServer::start()
 {
-    // CacheManager::getCachemanager();
+    CacheManager::getCachemanager();
     _threadpool.start();
 
     using namespace std::placeholders;
@@ -71,6 +71,10 @@ void SearchEngineServer::doTaskThread(const TcpConnectionPtr &conn, string &msg)
             WebPageSearcher _webpagesearcher;
             _webpagesearcher.doQuery(recvj["word"], sendj);
             break;
+        }
+        default:
+        {
+
         }
     }
     cout << sendj << endl;

@@ -1,6 +1,6 @@
 #include "../../include/SearchEngineServer/SearchEngineServer.h"
 
-// __thread const char * name;
+__thread const char * name;
 
 
 void test1()

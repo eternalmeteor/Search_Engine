@@ -6,13 +6,13 @@
 // 线程局部存储（TLS--Thread Local Storage）
 // TLS 是一种机制，通过这一机制分配的变量，每个当前线程有一个该变量的实例。
 // extern __thread const char *name; // 这里一般在头文件中进行声明
-__thread const char *name = "thread__name";
+extern __thread const char * name;
 
-Thread::Thread(ThreadCallback &&cb, const string &name)
+Thread::Thread(ThreadCallback &&cb, const string & name)
 : _thid(0)
 , _isRunning(true)
 , _cb(std::move(cb))
-, _name(name) 
+, _name(name)
 {}
 
 Thread::~Thread() 
@@ -61,7 +61,7 @@ void Thread::join()
     }
 }
     
-void * Thread::threadFunc(void *arg) 
+void* Thread::threadFunc(void *arg) 
 {
     Thread *pth = static_cast<Thread*>(arg);
     name = pth->_name.c_str(); // 从string转换为const char*

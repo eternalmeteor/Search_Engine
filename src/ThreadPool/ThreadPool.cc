@@ -1,5 +1,6 @@
 #include "../../include/ThreadPool/ThreadPool.h"
-
+#include "../../include/Cache/TimerManager.h"
+#include "../../include/Cache/CacheTimerTask.h"
 #include <unistd.h>
 
 
@@ -19,7 +20,7 @@ ThreadPool::~ThreadPool()
         stop();
     }
 }
-
+// 这里本质上是建立了五个线程，其中设置name==0的线程有两个，其中一个执行start任务，主要用于更新缓存
 void ThreadPool::start()
 {
     for(size_t idx = 0; idx < _threadNum; idx++)
@@ -27,8 +28,8 @@ void ThreadPool::start()
         unique_ptr<Thread> up(new Thread(std::bind(&ThreadPool::threadFunc, this), std::to_string(idx)));
         _threads.push_back(std::move(up));
     }
-    // unique_ptr<Thread> up(new Thread(std::bind(&ThreadPool)))
-
+    unique_ptr<Thread> up(new Thread(std::bind(&TimerManager::start, TimerManager::getTimerManager()), std::to_string(0)));
+    _threads.push_back(std::move(up));
     for(auto &th : _threads)
     {
         th->start();
