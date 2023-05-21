@@ -40,20 +40,57 @@ void test()
 	while(1)
     {
 		json j;
-		int cmd;
+		int cmd = 0;
+		string cmdline;
 		cout << "请输入要执行的操作：1.关键字推荐；2.网页查询:";
-		cin >> cmd;
-		getchar();
+		getline(cin, cmdline);
+		// cout << cmdline << endl;
+		try {
+			cmd = stoi(cmdline);
+		} catch (std::invalid_argument&) {
+			// 处理不能转换成整数的异常
+			std::cout << "您的输入有误，请重新输入！" << std::endl;
+			continue;
+		}
+		if(cmd != 1 && cmd != 2) {
+			std::cout << "您的输入有误，请重新输入！" << std::endl;
+			continue;
+		}
 		string line;
 		cout << "请输入要查询的语句:";
 		getline(cin, line);
-		if(cmd == 1) {
-			j["cmd"] = KeyRecommand;
-			j["word"] = line;
-		} else {
-			j["cmd"] = WebPageSearch;
-			j["word"] = line;	
+		if(line.size() == 0) 
+		{
+			std::cout << "您的输入有误，请重新输入！" << std::endl;
+			continue;
 		}
+		switch(cmd)
+		{
+			case 1:
+			{
+				j["cmd"] = KeyRecommand;
+				j["word"] = line;
+				break;
+			}
+			case 2:
+			{
+				j["cmd"] = WebPageSearch;
+				j["word"] = line;
+				break;
+			}
+			default:
+			{
+				std::cout << "您的输入有误，请重新输入！" << std::endl;
+				break;
+			}
+		}
+		// if(cmd == 1) {
+		// 	j["cmd"] = KeyRecommand;
+		// 	j["word"] = line;
+		// } else {
+		// 	j["cmd"] = WebPageSearch;
+		// 	j["word"] = line;	
+		// }
 		//1. 客户端先发数据
 		string buf; 
 		buf = ProtocolParser::Json2string(j);

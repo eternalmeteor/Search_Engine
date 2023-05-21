@@ -1,13 +1,16 @@
 #ifndef _KEYRECOMMANDER_H
 #define _KEYRECOMMANDER_H
 
-#include "CandidateResult.h"
+#include "../Cache/CandidateResult.h"
 #include "../myhead.h"
 #include "../json.h"
 #include "../TcpServer/TcpConnection.h"
 #include "Dictionary.h"
 #include "EditDistance.h"
 #include "../ProtocolParser.h"
+#include <assert.h>
+#include <string.h>
+#include <queue>
 
 using json = nlohmann::json;
 

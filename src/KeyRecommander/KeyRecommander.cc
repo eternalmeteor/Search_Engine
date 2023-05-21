@@ -1,5 +1,5 @@
 #include "../../include/KeyRecommander/KeyRecommander.h"
-
+#include "../../include/Cache/CacheManager.h"
 
 extern __thread const char * name;
 
@@ -82,17 +82,18 @@ void KeyRecommander::printSimilar()
 json KeyRecommander::get_serialize()
 {
     json j;
-    // if(CacheManager::getCachemanager()->getKeyWrodCache(atoi(name)).get(_queryWord, j))
-    // {
-    //     return j;
-    // }
-    // else 
-    // {
-    executeQuery();
-    j = ProtocolParser::vector2json(_similar_finally);
-    // CacheManager::getCachemanager()->getKeyWordCache(atoi(name)).put(_queryWord, j);
-    return j;
-    // }
+    if(CacheManager::getCachemanager()->getKeyWordCache(atoi(name)).get(_queryWord, j))
+    {
+        return j;
+    }
+    else 
+    {
+        executeQuery();
+        j = ProtocolParser::vector2json(_similar_finally);
+        std::cout <<"Thread:" << name << std::endl;
+        CacheManager::getCachemanager()->getKeyWordCache(atoi(name)).put(_queryWord, j);
+        return j;
+    }
 }
 
 vector<string> KeyRecommander::read_utf8_onebyone(string input)

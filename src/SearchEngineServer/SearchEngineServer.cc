@@ -72,10 +72,6 @@ void SearchEngineServer::doTaskThread(const TcpConnectionPtr &conn, string &msg)
             _webpagesearcher.doQuery(recvj["word"], sendj);
             break;
         }
-        default:
-        {
-
-        }
     }
     cout << sendj << endl;
     string response = ProtocolParser::Json2string(sendj);

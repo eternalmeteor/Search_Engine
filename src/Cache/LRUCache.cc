@@ -48,13 +48,16 @@ bool LRUCache::put(string key, json & value) // 将key-value放入缓存中
 
 void LRUCache::writeToFile(string filename)
 {
+    cout << "writeToFile:" <<endl;
     ofstream ofs(filename);
     if(!ofs.good())
     {
         cout << "error : " << filename << endl;
     }
+    cout << _resultList.size() << endl;
     for(auto &it : getResultList())
     {
+        cout << it.first << " " << it.second << endl;
         ofs << it.first << " " << it.second << endl;
     }
     ofs.close();
@@ -141,7 +144,7 @@ list<pair<string, json>> & LRUCache::getResultList()
     return _resultList;
 }
 
-#if 0
+# if 0
 int main()
 {
     LRUCache lc(2);
@@ -187,8 +190,7 @@ int main()
     lc.show();
     cout << endl;
     
-    // lc.writeToFile("wordcache.dat");
+    lc.writeToFile("wordcache.dat");
 
 }
 #endif
-

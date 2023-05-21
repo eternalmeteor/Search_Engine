@@ -55,6 +55,7 @@ LRUCache& CacheManager::getWebPageCache(int idx)  // 从磁盘文件中读取缓
 
 void CacheManager::periodicUpdateCaches() // 定时更新所有的缓存
 {
+    std::cout << "I am void CacheManager::periodicUpdateCaches()" << std::endl;
     map<string, string> & cmap = Configuration::getInstance()->getConfigMap();
 
     LRUCache &mainKeyCache = _keyWordCaches[0];
@@ -63,10 +64,13 @@ void CacheManager::periodicUpdateCaches() // 定时更新所有的缓存
         auto &pendingUpdateList = _keyWordCaches[idx].getPendingUpdateList();
         for(auto &iter : pendingUpdateList)
         {
+            cout << iter.first << " " << iter.second << endl;
             mainKeyCache.put(iter.first, iter.second);
         }
         pendingUpdateList.clear();
     }
+
+    mainKeyCache.writeToFile(cmap["keywordcache_path"]);
 
     for(int idx = 1; idx != _keyWordCaches.size(); ++idx)
     {
