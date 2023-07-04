@@ -173,6 +173,24 @@ bool WebPageQuery::executeQuery(const vector<string> & queryWords, vector<WebPag
         // 求交集--包含所有单词的网页
         for(size_t idx = 1; idx < queryWords.size(); ++idx)
         {
+
+            vector<int> vec1 = {2, 3, 6, 8, 12, 16};
+            vector<int> vec2 = {3, 4, 8, 12, 16, 20};
+            vector<int> output;//error
+            auto iterEnd = std::set_intersection(vec1.begin(), vec1.end(), vec2.begin(), vec2.end(),
+                                                output.begin());// 发生段错误
+
+            vector<int> vec1 = {2, 3, 6, 8, 12, 16};
+            vector<int> vec2 = {3, 4, 8, 12, 16, 20};
+            auto iterEnd = std::set_intersection(vec1.begin(), vec1.end(), vec2.begin(), vec2.end(),
+                                                vec1.begin());// 使用vec1代替output
+            // 打印结果
+            for(auto iter = vec1.begin(); iter != iterEnd; ++iter) {
+                cout << *iter << " ";
+            }
+            cout << endl;
+
+
             auto iter = std::set_intersection(webPages[0].begin(), webPages[0].end(),
                                     webPages[idx].begin(), webPages[idx].end(), webPages[0].begin());
             if(iter == webPages[0].begin())

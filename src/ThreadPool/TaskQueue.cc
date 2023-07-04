@@ -58,7 +58,6 @@ Elem TaskQueue::pop() // pop相当于是消费者线程
         tmp = _que.front();
         _que.pop();
         _notFull.notify();
-
         return tmp;
     } else {
         return nullptr;
